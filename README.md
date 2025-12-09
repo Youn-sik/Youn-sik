@@ -1,16 +1,38 @@
-## Hi there 👋
+# Hi there 👋
 
-<!--
-**Youn-sik/Youn-sik** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I'm a Backend Engineer of experience specializing in Kubernetes-native development, microservices architecture, and cloud infrastructure optimization.
 
-Here are some ideas to get you started:
+## 🔭 Currently Working On
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+**Skuber+ Optimization** - A FinOps platform providing Kubernetes cost optimization solutions across multi-cloud environments (AWS, GCP, Azure, Oracle), available as both SaaS and on-premises deployments.
+
+## 💼 Professional Experience
+
+- **Software Engineer** at WONDERMOVE Inc. (2025 - Present)
+  - Developing ML/statistics-based Custom VPA Recommender
+  - Building Kubernetes cost optimization solutions for multi-cloud environments
+  - Architecting multi-tenant SaaS and on-premises deployment systems
+
+- **Backend Engineer / Team Lead** at Koolsign Inc. (2021 - 2025)
+  - Led MSA transformation using Event Storming and DDD
+  - Designed and operated B2B/B2C integrated EV charging platforms
+  - Managed server development team and drove technical decisions
+
+## 🛠 Tech Stack
+
+**Languages & Frameworks:** Golang, NodeJS  
+**Infrastructure:** Kubernetes, Docker, AWS, GCP, Azure  
+**Databases:** MongoDB, MySQL, Redis  
+**Cloud Native:** VPA, HPA, Descheduler, KEDA, Karpenter  
+**Architecture:** MSA, Event Storming, DDD, SAGA Pattern, gRPC, NATS
+
+## 📊 GitHub Stats
+
+![Youn-sik's GitHub stats](https://github-readme-stats.vercel.app/api?username=Youn-sik&show_icons=true&theme=default&hide_border=true)
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Youn-sik&layout=compact&hide_border=true)
+
+## 📫 Contact
+
+- Email: yscho20@gmail.com
+- LinkedIn: [linkedin.com/in/younsik](https://www.linkedin.com/in/younsik/)
