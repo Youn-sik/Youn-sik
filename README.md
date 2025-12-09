@@ -26,12 +26,6 @@ I'm a Backend Engineer of experience specializing in Kubernetes-native developme
 **Cloud Native:** VPA, HPA, Descheduler, KEDA, Karpenter  
 **Architecture:** MSA, Event Storming, DDD, SAGA Pattern, gRPC, NATS
 
-## 📊 GitHub Stats
-
-![Youn-sik's GitHub stats](https://github-readme-stats.vercel.app/api?username=Youn-sik&show_icons=true&theme=default&hide_border=true)
-
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Youn-sik&layout=compact&hide_border=true)
-
 ## 📫 Contact
 
 - Email: yscho20@gmail.com
