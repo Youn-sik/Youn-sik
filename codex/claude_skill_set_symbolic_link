@@ -1,0 +1,108 @@
+• 작업 보고서
+  주제: Claude calab-plugin 기반 SKILL.md 스킬셋을 Codex에서 동일 사용하도록 구성하고, 심볼릭 링크로 실시간 동기화 구조 확립
+
+  1. 배경 및 목적
+
+  - 목표: Claude와 Codex가 동일한 스킬 정의(SKILL.md)를 사용하도록 통합
+  - 의도: 스킬 변경 시 양쪽 모델에 동일하게 반영되도록 단일 소스(SSOT) 운영
+  - 활용: 다른 개발 환경에서도 동일 방식으로 재현 가능한 설치/운영 가이드 확보
+
+  2. 수행 범위
+
+  - Claude 설정/플러그인 경로 접근 가능 여부 확인
+  - calab-plugin의 실제 스킬 파일(skills/*/SKILL.md) 존재 및 읽기 검증
+  - Codex 스킬 경로(.codex/skills)로 스킬셋 매핑
+  - Codex 최상위에서 직접 호출 가능한 alias(calab-*) 구성
+  - 최종적으로 복사 기반이 아닌 원본 참조(심볼릭 링크) 구조로 전환
+
+  3. 확인된 주요 경로
+
+  - Claude 설정: .claude.json
+  - Claude 플러그인 원본: cho/source/calab-claude-plugin/plugins/calab-plugin
+  - Codex 스킬 루트: .codex/skills
+  - 최종 SSOT 연결:
+      - .codex/skills/calab-plugin -> /Users/cho/cho/source/calab-claude-plugin/plugins/calab-plugin
+
+  4. 실제 적용 결과
+
+  - calab-plugin 전체 구조를 Codex에서 사용 가능하게 매핑 완료
+  - Codex 최상위 alias 16개 생성 완료:
+      - calab-best-practices
+      - calab-clarification-protocol
+      - calab-code-quality
+      - calab-dev
+      - calab-docs
+      - calab-e2e
+      - calab-guard
+      - calab-jira
+      - calab-onboard
+      - calab-project-rules
+      - calab-refactor
+      - calab-research
+      - calab-security
+      - calab-solve
+      - calab-tdd-workflow
+      - calab-work-tracker
+  - 모든 alias에서 SKILL.md 접근 검증 완료(16/16)
+
+  5. 아키텍처 요약
+
+  - 단일 원본: Claude 플러그인 저장소의 plugins/calab-plugin
+  - Codex 측:
+      - calab-plugin는 원본을 가리키는 심볼릭 링크
+      - calab-* alias는 calab-plugin/skills/*를 가리키는 심볼릭 링크
+  - 효과:
+      - Claude 원본 스킬 수정 시 Codex도 동일 파일을 참조
+      - 두 모델이 동일 스킬셋을 사용
+
+  6. 재현 가이드 (다른 환경용)
+
+  1. 원본 플러그인 경로 준비
+      - 예: <repo>/plugins/calab-plugin
+      - 내부에 skills/*/SKILL.md 존재 확인
+  2. Codex 스킬 루트 준비
+      - 기본: ~/.codex/skills
+  3. calab-plugin 링크 연결
+
+  ln -sfn <원본>/plugins/calab-plugin ~/.codex/skills/calab-plugin
+
+  4. 스킬별 alias 생성
+
+  for d in ~/.codex/skills/calab-plugin/skills/*; do
+    name="$(basename "$d")"
+    ln -sfn "$d" "~/.codex/skills/calab-${name}"
+  done
+
+  5. 검증
+
+  for l in ~/.codex/skills/calab-*; do
+    [ -f "$l/SKILL.md" ] && echo "ok $(basename "$l")"
+  done
+
+  6. Codex 재시작 또는 새 세션 시작
+      - 스킬 로더가 새로 스캔하도록 반영
+
+  7. 운영 시 주의사항
+
+  - 심볼릭 링크 대상 경로가 바뀌면 alias도 깨질 수 있음
+  - 팀 환경에서는 원본 repo 경로를 표준화하는 것이 안전
+  - 권한/샌드박스 정책으로 ~/.codex 쓰기에 승인이 필요할 수 있음
+  - 스킬 네이밍 충돌 방지를 위해 prefix(calab-) 유지 권장
+
+  8. 롤백 방법
+
+  - alias 제거:
+
+  find ~/.codex/skills -maxdepth 1 -type l -name 'calab-*' -delete
+
+  - calab-plugin 링크 제거:
+
+  rm ~/.codex/skills/calab-plugin
+
+  - 필요 시 백업 디렉터리 복원(환경별 백업명 기준)
+
+  9. 결론
+
+  - Claude calab-plugin 스킬셋을 Codex에 동일하게 적용했고,
+  - 심볼릭 링크 기반으로 업데이트 반영 경로를 통일하여
+  - 서로 다른 두 회사의 언어 모델이 동일 스킬 정의를 공유하도록 구성 완료했습니다.
